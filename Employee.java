@@ -1,18 +1,18 @@
 
-public class Employee {
-	public static String name; 
-	public static int time;
+public class Employee implements Comparable<Employee>{
+	public String name; 
+	public int time;
 	
 	public Employee(String name, int time) {
 		this.name = name;
 		this.time = time;
 	}
 	
-	public static int getTime() {
+	public int getTime() {
 		return time;
 	}
 	
-	public static String getName() {
+	public String getName() {
 		return name;
 	}
 	
