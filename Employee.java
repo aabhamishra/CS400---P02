@@ -1,5 +1,4 @@
 
-
 public class Employee {
 
 	private String name;
@@ -37,15 +36,30 @@ public class Employee {
 		}
 		return true;
 	}
+	public static String removeChar(String input, char character) {
+		int i;
+		for (i=0;i<input.length();i++) {
+			if (input.charAt(i)==character) {
+				if (i!=input.length()-1) {
+				input = input.substring(0, i) + input.substring(i + 1, input.length());
+				} else {
+					input = input.substring(0,i);
+				}
+			}
+		}
+		return input;
+	}
 
 	public static int inputToTime(String input) {
 		String check = "0123456789";
-		String removedChars = ". -";
-		input.replaceAll(" ", "");
+		String removedChars = " -.";
 		int i;
-		for (i = 0; i < removedChars.length(); i++) {
-			input.replaceAll("" + removedChars.charAt(i), "");
+		for (i=0;i<removedChars.length();i++) {
+			input = removeChar(input, removedChars.charAt(i));
 		}
+		input = removeChar(input, ' ');
+	
+		input.replaceAll("-", "");
 		input = input.toLowerCase();
 		String first = null;
 		String second = null;
