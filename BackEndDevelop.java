@@ -28,6 +28,10 @@ public class BackEndDevelop {
    * @return String with the employee name
    */
   public String getMin() {
+    if (workTree.root == null) {
+			System.out.println("There is no one clocked in yet.");
+			return null;
+		}
     return getMinHelper(workTree.root).data.getName();
   }
 
@@ -51,6 +55,10 @@ public class BackEndDevelop {
    * @return the string name of employee
    */
   public String getMax() {
+    if (workTree.root == null) {
+			System.out.println("There is no one clocked in yet.");
+			return null;
+		}
     return getMaxHelper(workTree.root).data.getName();
   }
 
