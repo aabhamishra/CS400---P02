@@ -3,52 +3,14 @@ public class Employee implements Comparable<Employee> {
 
 	public String name;
 	public int time;
-	private static String[] names = new String[10];
-	private static int employees;
 
 	/*
 	 * creates a new employee class with name equal to name and time equal to time
-	 * stores new employees in an array of string called names and increments the
-	 * static int employees by 1 if a new employee has a name that is already in the
-	 * array it throws a new IllegalArgument exception
 	 */
 	public Employee(String name, int time) {
-		int i;
-		/*
-		 * increments through the perfect size names array to find if the new name is
-		 * already in there
-		 */
-		for (i = 0; i < employees; i++) {
-			if (names[i].contentEquals(name)) {
-				throw new IllegalArgumentException("an Employee with the same name is already logged in");
-			}
-		}
 		// sets the name and time variables
 		this.name = name;
 		this.time = time;
-
-		/*
-		 * if the number of employees is less than the total length then the name can be
-		 * inserted
-		 */
-		if (employees < names.length) {
-			names[employees] = name;
-			employees += 1;
-
-			/*
-			 * if not then the array size is doubled and old elements are added to new array
-			 */
-		} else {
-
-			String[] old = names;
-			names = new String[old.length * 2];
-			for (i = 0; i < old.length; i++) {
-				names[i] = old[i];
-			}
-			// adds the name to the table and increments employees
-			names[employees] = name;
-			employees += 1;
-		}
 	}
 
 	/*
