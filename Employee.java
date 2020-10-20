@@ -148,70 +148,104 @@ public class Employee implements Comparable<Employee> {
 	 * a valid time in either case. *note* the time cannot be negative since hyphens are removed
 	 */
 	public static int inputToInt(String input) {
+		//this string is used to check if something is a digit via check.contains()
 		String check = "0123456789";
+		//this string is iterated through to remove all of these characters
+		//from the input string via the removeCharhelper method
 		String removedChars = " -.";
 		int i;
+		//iterates thruogh removedChars
 		for (i = 0; i < removedChars.length(); i++) {
 			input = removeChar(input, removedChars.charAt(i));
 		}
-		input = removeChar(input, ' ');
-
-		input.replaceAll("-", "");
+		//changes to lowerCase
 		input = input.toLowerCase();
+		
+		//first will be the substring containing the hours, and second the minutes
 		String first = null;
 		String second = null;
+		
+		//firstInt holds the hours and secondInt the minutes
 		int firstInt;
 		int secondInt;
+		//searches for a colon and if one is found separates into substrings accordingly
 		for (i = 0; i < input.length(); i++) {
 			if (input.charAt(i) == ':') {
 				first = input.substring(0, i);
 				second = input.substring(i + 1, i + 3);
 			}
 		}
+		//input has whitespace added so the following operations work even if input would have been to small for them
 		input = input + "   ";
+		
+		//if first is null there was no colon found so we assume the first space is a digit
+		//and then check the next three to find out how many digits there are
+		//if the first space is not a digit then parseint will throw an error and this is
+		//an invalid input so it should
 		if (first == null) {
+			//checks second space for digit
 			if (check.contains(input.substring(1, 2))) {
+				//checks third space for digit
 				if (check.contains(input.substring(2, 3))) {
+					//checks fourth space for digit
 					if (check.contains(input.substring(3, 4))) {
+						//this is the case that the first4 characters are all digits
+						//so we separate into two substrings of hours and minutes
 						first = input.substring(0, 2);
 						second = input.substring(2, 4);
 					} else {
+						//this is the case of 3 digits so we assume the first
+						//is the hour and the second two are the minutes
 						first = input.substring(0, 1);
 						second = input.substring(1, 3);
 					}
 				} else {
+					//this is the case of two digits so we assume they are both the hour
+					//and minutes are 00
 					first = input.substring(0, 2);
 					second = "00";
 				}
 
 			} else {
+				//this is the case of one digit so we assume it is the hour
+				//and minutes are 00
 				first = input.substring(0, 1);
 				second = "00";
 			}
 
 		}
+		//parses the two substrings into ints and assigns them to firstInt and secondInt
 		firstInt = Integer.parseInt(first);
 		secondInt = Integer.parseInt(second);
-
-		if (firstInt < 13 && input.contains("am") || input.contains("pm")) {
+		
+		// if the input contains am or pm changes the time
+		if (input.contains("am") || input.contains("pm")) {
+			//if the input has am/pm and a number greater than 12 then the input is invalid
 			if (firstInt > 12) {
-				throw new IllegalArgumentException("Do not say am or pm with military time.");
+				throw new IllegalArgumentException("Do not use am or pm with military time.");
 			}
+			//if input is am it is only changed if firstInt (hours) is 12
 			if (input.contains("am")) {
 				if (firstInt == 12) {
 					firstInt -= 12;
 				}
 			} else {
+				//if input contains pm then it is changed unless firstInt (hours) is 12
 				if (firstInt != 12) {
 					firstInt += 12;
 				}
 			}
 		}
+		//creates an int called toReturn which holds the hours in the thousands and hundreds slot
+		//and the minutes in the ones and tens places
 		int toReturn = firstInt * 100 + secondInt;
+		//checks that the time input is valid by making sure that hours are less than 24 and that 
+		//minutes are not greater than 59
 		if (toReturn > 2399 || toReturn < 0 || (toReturn % 100) > 59) {
 			throw new IllegalArgumentException("Illegal Time");
 		}
-		return firstInt * 100 + secondInt;
+		//returns the int representation of the time
+		return toReturn;
 	}
 
 }
