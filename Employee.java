@@ -1,6 +1,6 @@
 
 
-public class Employee {
+public class Employee implements Comparable<Employee> {
 
 	private String name;
 	private int time;
@@ -8,7 +8,10 @@ public class Employee {
 	private static int employees;
 	public Employee(String name, int time) {
 		int i;
+		System.out.println("here");
+		System.out.println(employees);
 		for (i=0;i<employees;i++) {
+			System.out.println("here");
 			if (names[i].contentEquals(name)) {
 				throw new IllegalArgumentException("an Employee with the same name is already logged in");
 			}
@@ -70,7 +73,7 @@ public class Employee {
 		return input;
 	}
 
-	public static int inputToTime(String input) {
+	public static int inputToInt(String input) {
 		String check = "0123456789";
 		String removedChars = " -.";
 		int i;
