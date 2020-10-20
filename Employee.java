@@ -1,8 +1,8 @@
 
 public class Employee implements Comparable<Employee> {
 
-	private String name;
-	private int time;
+	public String name;
+	public int time;
 	private static String[] names = new String[10];
 	private static int employees;
 
