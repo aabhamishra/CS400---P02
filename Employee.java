@@ -143,6 +143,7 @@ public class Employee implements Comparable<Employee> {
 	 * 
 	 * 7. The method removes all spaces hyphens and periods, as well as lowercasing all elements
 	 * before reading so 1.3.5-6 A -.-.- m would be read as 1356am
+	 *
 	 * 8. If the minutes are over 59 or the hours are over 24 it will give an error since this is not
 	 * a valid time in either case. *note* the time cannot be negative since hyphens are removed
 	 */
