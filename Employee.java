@@ -19,7 +19,6 @@ public class Employee implements Comparable<Employee> {
 		 * already in there
 		 */
 		for (i = 0; i < employees; i++) {
-			System.out.println("here");
 			if (names[i].contentEquals(name)) {
 				throw new IllegalArgumentException("an Employee with the same name is already logged in");
 			}
@@ -104,7 +103,7 @@ public class Employee implements Comparable<Employee> {
 			if (input.charAt(i) == character) {
 				if (i != input.length() - 1) {
 					input = input.substring(0, i) + input.substring(i + 1, input.length());
-					i-=1;
+					i -=1;
 				} else {
 					input = input.substring(0, i);
 				}
@@ -155,7 +154,7 @@ public class Employee implements Comparable<Employee> {
 		//from the input string via the removeCharhelper method
 		String removedChars = " -.";
 		int i;
-		//iterates thruogh removedChars
+		//iterates through removedChars
 		for (i = 0; i < removedChars.length(); i++) {
 			input = removeChar(input, removedChars.charAt(i));
 		}
