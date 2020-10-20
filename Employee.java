@@ -112,9 +112,39 @@ public class Employee implements Comparable<Employee> {
 		return input;
 	}
 
-	/*
+		/*
 	 * returns an int time representation of a given string throws an
 	 * illegalArgumentException if the input is invalid
+	 * 
+	 * Things to know about this method -
+	 * 
+	 * 1. The first thing in the input string must be the time
+	 * if there are letters or extraneous characters at the start
+	 * of the input it will not work.
+	 * 
+	 * 2. The time can be entered with or without a : ie -
+	 * 1:45 and 145 and 1242 and 125 are all valid inputs
+	 * 
+	 * 3. if there are 3 digits ie - 635 the assumed meaning of this is
+	 * 6:35 ie it will always assume a missing 0 at the front for 3 digits
+	 * 4 digits are always assumed to mean xx:xx and if there are more than 4 it will take
+	 * the first 4
+	 * 
+	 * 4. if there are 2 or 1 digits it will assume those digits are the hour and that
+	 * minutes are 00 ie 1 is 1:00 14 is 14:00 etc
+	 * 
+	 * 5. it will accept military time or pm/am but not both. if one is to use am/pm it has to
+	 * be after the time since if the time is not first it will work, ie 12:00am will work
+	 * 12am  154pm will all work
+	 * 
+	 * 6. if digits are interrupted by most characters that aren't digits then it will only
+	 * count the first group of digits ie - 12AWEF24 would be read as 12 since A is not a valid
+	 * character
+	 * 
+	 * 7. The method removes all spaces hyphens and periods, as well as lowercasing all elements
+	 * before reading so 1.3.5-6 A -.-.- m would be read as 1356am
+	 * 8. If the minutes are over 59 or the hours are over 24 it will give an error since this is not
+	 * a valid time in either case. *note* the time cannot be negative since hyphens are removed
 	 */
 	public static int inputToInt(String input) {
 		String check = "0123456789";
