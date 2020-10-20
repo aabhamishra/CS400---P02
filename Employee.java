@@ -1,5 +1,4 @@
 
-
 public class Employee implements Comparable<Employee> {
 
 	private String name;
@@ -53,7 +52,7 @@ public class Employee implements Comparable<Employee> {
 
 	public static boolean isValidInput(String input) {
 		try {
-			inputToTime(input);
+			inputToInt(input);
 		} catch (Exception e) {
 			return false;
 		}
