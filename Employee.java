@@ -1,3 +1,4 @@
+
 public class Employee implements Comparable<Employee>{
 	public String name; 
 	public int time;
@@ -52,3 +53,4 @@ public class Employee implements Comparable<Employee>{
 		}
 	}
 }
+ 
