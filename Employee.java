@@ -1,12 +1,32 @@
 
+
 public class Employee {
 
 	private String name;
 	private int time;
-
+	private static String[] names = new String[10];
+	private int employees;
 	public Employee(String name, int time) {
+		int i;
+		for (i=0;i<employees;i++) {
+			if (names[i].contentEquals(name)) {
+				throw new IllegalArgumentException("an Employee with the same name is already logged in");
+			}
+		}
 		this.name = name;
 		this.time = time;
+		if (employees<names.length) {
+			names[employees] = name;
+			employees += 1;
+		} else {
+			String[] old = names;
+			names = new String[old.length * 2];
+			for (i=0;i<old.length;i++) {
+				names[i] = old[i];
+			}
+			names[employees] = name;
+			employees += 1;
+		}
 	}
 
 	public int compareTo(Employee e2) {
