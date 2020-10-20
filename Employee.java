@@ -5,32 +5,58 @@ public class Employee implements Comparable<Employee> {
 	private int time;
 	private static String[] names = new String[10];
 	private static int employees;
+
+	/*
+	 * creates a new employee class with name equal to name and time equal to time
+	 * stores new employees in an array of string called names and increments the
+	 * static int employees by 1 if a new employee has a name that is already in the
+	 * array it throws a new IllegalArgument exception
+	 */
 	public Employee(String name, int time) {
 		int i;
-		System.out.println("here");
-		System.out.println(employees);
-		for (i=0;i<employees;i++) {
+		/*
+		 * increments through the perfect size names array to find if the new name is
+		 * already in there
+		 */
+		for (i = 0; i < employees; i++) {
 			System.out.println("here");
 			if (names[i].contentEquals(name)) {
 				throw new IllegalArgumentException("an Employee with the same name is already logged in");
 			}
 		}
+		// sets the name and time variables
 		this.name = name;
 		this.time = time;
-		if (employees<names.length) {
+
+		/*
+		 * if the number of employees is less than the total length then the name can be
+		 * inserted
+		 */
+		if (employees < names.length) {
 			names[employees] = name;
 			employees += 1;
+
+			/*
+			 * if not then the array size is doubled and old elements are added to new array
+			 */
 		} else {
+
 			String[] old = names;
 			names = new String[old.length * 2];
-			for (i=0;i<old.length;i++) {
+			for (i = 0; i < old.length; i++) {
 				names[i] = old[i];
 			}
+			// adds the name to the table and increments employees
 			names[employees] = name;
 			employees += 1;
 		}
 	}
 
+	/*
+	 * compares one employee to another based on their arrival times returns 1 if
+	 * the first time is larger -1 if the second one is larger and throws an
+	 * IllegalArgumentException otherwise.
+	 */
 	public int compareTo(Employee e2) {
 		if (this.time > e2.time) {
 			return 1;
@@ -42,14 +68,23 @@ public class Employee implements Comparable<Employee> {
 
 	}
 
+	/*
+	 * returns the time field of the employee class
+	 */
 	public int getTime() {
 		return this.time;
 	}
 
+	/*
+	 * returns the name field
+	 */
 	public String getName() {
 		return this.name;
 	}
 
+	/*
+	 * returns true if the string input is valid and false otherwise
+	 */
 	public static boolean isValidInput(String input) {
 		try {
 			inputToInt(input);
@@ -58,29 +93,38 @@ public class Employee implements Comparable<Employee> {
 		}
 		return true;
 	}
+
+	/*
+	 * a helper method that removes all chars from the String input that match the
+	 * char called character
+	 */
 	public static String removeChar(String input, char character) {
 		int i;
-		for (i=0;i<input.length();i++) {
-			if (input.charAt(i)==character) {
-				if (i!=input.length()-1) {
-				input = input.substring(0, i) + input.substring(i + 1, input.length());
+		for (i = 0; i < input.length(); i++) {
+			if (input.charAt(i) == character) {
+				if (i != input.length() - 1) {
+					input = input.substring(0, i) + input.substring(i + 1, input.length());
 				} else {
-					input = input.substring(0,i);
+					input = input.substring(0, i);
 				}
 			}
 		}
 		return input;
 	}
 
+	/*
+	 * returns an int time representation of a given string throws an
+	 * illegalArgumentException if the input is invalid
+	 */
 	public static int inputToInt(String input) {
 		String check = "0123456789";
 		String removedChars = " -.";
 		int i;
-		for (i=0;i<removedChars.length();i++) {
+		for (i = 0; i < removedChars.length(); i++) {
 			input = removeChar(input, removedChars.charAt(i));
 		}
 		input = removeChar(input, ' ');
-	
+
 		input.replaceAll("-", "");
 		input = input.toLowerCase();
 		String first = null;
