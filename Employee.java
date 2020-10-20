@@ -63,7 +63,7 @@ public class Employee implements Comparable<Employee> {
 		} else if (this.time < e2.time) {
 			return -1;
 		} else {
-			throw new IllegalArgumentException("both employees have the same time");
+			return 0;
 		}
 
 	}
