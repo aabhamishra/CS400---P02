@@ -104,6 +104,7 @@ public class Employee implements Comparable<Employee> {
 			if (input.charAt(i) == character) {
 				if (i != input.length() - 1) {
 					input = input.substring(0, i) + input.substring(i + 1, input.length());
+					i-=1;
 				} else {
 					input = input.substring(0, i);
 				}
