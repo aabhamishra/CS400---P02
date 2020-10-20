@@ -1,3 +1,11 @@
+// --== CS400 File Header Information ==--
+// Name: Francis Choi
+// Email: fchoi@wisc.edu
+// Team: HF
+// Role: FrontEndDeveloper
+// TA: Na Li
+// Lecturer: Florian
+// Notes to Grader: <>
 import java.util.Scanner;
 
 public class EmplyeeLogDriver {
