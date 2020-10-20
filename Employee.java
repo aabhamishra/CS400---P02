@@ -5,7 +5,7 @@ public class Employee {
 	private String name;
 	private int time;
 	private static String[] names = new String[10];
-	private int employees;
+	private static int employees;
 	public Employee(String name, int time) {
 		int i;
 		for (i=0;i<employees;i++) {
